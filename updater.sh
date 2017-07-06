@@ -3,8 +3,7 @@ clear
 echo "Updater script for LaVie-Manager - version 0.1"
 
 cd /srv/http/database-editor/nodejs
-mkdir ../backup
-mkdir ../backup/nodejs
+mkdir -p ../backup/nodejs
 mv ./environments ../backup/nodejs/environments
 git reset --hard && git pull origin develop
 rm -rf ./environments
@@ -21,9 +20,7 @@ else
 fi
 
 cd /srv/http/database-editor/aurelia
-mkdir ../backup
-mkdir ../backup/aurelia
-mkdir ../backup/aurelia/aurelia_project
+mkdir -p ../backup/aurelia/aurelia_project
 mv ./aurelia_project/environments ../backup/aurelia/aurelia_project/environments
 mv ./appltv ../backup/aurelia/appltv
 mv ./Config ../backup/aurelia/Config
