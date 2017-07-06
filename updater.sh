@@ -2,7 +2,8 @@
 clear
 echo "Updater script for LaVie-Manager - version 0.1"
 
-rm -rf ../backup
+cd /srv/http/database-editor
+rm -rf ./backup
 
 cd /srv/http/database-editor/nodejs
 mkdir -p ../backup/nodejs
