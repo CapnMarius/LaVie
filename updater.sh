@@ -2,6 +2,8 @@
 clear
 echo "Updater script for LaVie-Manager - version 0.1"
 
+rm -rf ../backup
+
 cd /srv/http/database-editor/nodejs
 mkdir -p ../backup/nodejs
 mv ./environments ../backup/nodejs/environments
@@ -21,13 +23,13 @@ fi
 
 cd /srv/http/database-editor/aurelia
 mkdir -p ../backup/aurelia/aurelia_project
+mkdir -p ../backup/aurelia/crew
+mkdir -p ../backup/aurelia/web/cabin
 mv ./aurelia_project/environments ../backup/aurelia/aurelia_project/environments
-mv ./appltv ../backup/aurelia/appltv
 mv ./Config ../backup/aurelia/Config
-mv ./crew ../backup/aurelia/crew
-mv ./is_there_a_mysql_connection.php ../backup/aurelia/is_there_a_mysql_connection.php
+mv ./crew/zones.json ../backup/aurelia/crew/zones.json
 mv ./yamaha_control.php ../backup/aurelia/yamaha_control.php
-mv ./web ../backup/aurelia/web
+mv ./web/cabin/sources.json ../backup/aurelia/web/cabin/sources.json
 git reset --hard && git pull origin develop
 rm ./aurelia_project/environments
 cp -r ../backup/aurelia/* ./
