@@ -1,13 +1,17 @@
 #!/bin/bash
 clear
 echo "Updater script for LaVie-Manager - version 0.1"
+current_time=$(date "+%Y.%m.%d-%H.%M.%S")
 
 cd /srv/http/database-editor
-rm -rf ./backup
+#rm -rf ./backup
 mkdir -p ./backup/nodejs
 mkdir -p ./backup/aurelia/aurelia_project
 mkdir -p ./backup/aurelia/crew
 mkdir -p ./backup/aurelia/web/cabin
+
+cp -r ./aurelia ./aurelia_backup_$current_time
+cp -r ./nodejs ./nodejs_backup_$current_time
 
 cd /srv/http/database-editor/nodejs
 mv ./environments ../backup/nodejs/environments
