@@ -57,4 +57,4 @@ echo "Don't forget to update kodi.service to restart always (
 	sudo nano /lib/systemd/system/kodi.service 
 		on-abort -> always
 	sudo systemctl daemon-reload && sudo systemctl restart kodi
-)"
+)" 
