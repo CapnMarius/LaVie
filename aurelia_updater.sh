@@ -26,7 +26,7 @@ if cp -r ./aurelia ./aurelia_backup_$current_time; then
 	echo "Downloading updates" 
 	if git reset --hard && git pull origin develop; then
 		echo "Downloading updates succeeded" 
-		rm ./aurelia_project/environments
+		rm -rf ./aurelia_project/environments
 		cp -r ../aurelia_backup/* ./
 
 		echo "Compiling"
