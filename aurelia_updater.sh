@@ -11,7 +11,7 @@ mkdir -p ./aurelia_backup/crew
 mkdir -p ./aurelia_backup/web/cabin
 
 echo "Creating a backup of Aurelia" 
-if [cp -r ./aurelia ./aurelia_backup_$current_time]; then
+if cp -r ./aurelia ./aurelia_backup_$current_time; then
 	echo "Backup succeeded" 
 	
 	cd /srv/http/database-editor/aurelia
@@ -24,13 +24,13 @@ if [cp -r ./aurelia ./aurelia_backup_$current_time]; then
 	mv ./web/cabin/sources.json ../aurelia_backup/web/cabin/sources.json
 	
 	echo "Downloading updates" 
-	if [git reset --hard && git pull origin develop]; then
+	if git reset --hard && git pull origin develop; then
 		echo "Downloading updates succeeded" 
 		rm -rf ./aurelia_project/environments
 		cp -r ../aurelia_backup/* ./
 
 		echo "Compiling"
-		if [./node_modules/.bin/au build]; then
+		if ./node_modules/.bin/au build; then
 			echo "Compiling succeeded"
 		else 
 			echo "Compiling failed"
@@ -41,11 +41,11 @@ if [cp -r ./aurelia ./aurelia_backup_$current_time]; then
 		success=false
 	fi
 	
-	if [$success == true]; then
+	if $success == true; then
 		echo "Succeeded, you can now reload the webpage"
 	else 
 		echo "Failed, reverting backup" 
-		if [cp -rf ../aurelia_backup_$current_time ./]; then
+		if cp -rf ../aurelia_backup_$current_time ./; then
 			echo "Backup restore succeeded"
 		else 
 			echo "Backup restore failed, please try it manually"
