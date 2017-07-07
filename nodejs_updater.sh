@@ -15,7 +15,7 @@ if cp -r ./nodejs ./nodejs_backup_$current_time; then
 	cd /srv/http/database-editor/nodejs
 	
 	echo "Cleaning project directory" 
-	mv ./environments ../backup/nodejs/environments
+	mv ./environments ../nodejs_backup/environments
 	
 	echo "Downloading updates" 
 	if git reset --hard && git pull origin develop; then
