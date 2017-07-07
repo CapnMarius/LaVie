@@ -9,7 +9,7 @@ rm -rf ./nodejs_backup
 mkdir -p ./nodejs_backup
 
 echo "Creating a backup of NodeJS" 
-if [cp -r ./nodejs ./nodejs_backup_$current_time]; then
+if cp -r ./nodejs ./nodejs_backup_$current_time; then
 	echo "Backup succeeded" 
 	
 	cd /srv/http/database-editor/nodejs
@@ -18,16 +18,16 @@ if [cp -r ./nodejs ./nodejs_backup_$current_time]; then
 	mv ./environments ../nodejs_backup/environments
 	
 	echo "Downloading updates" 
-	if [git reset --hard && git pull origin develop]; then
+	if git reset --hard && git pull origin develop; then
 		echo "Downloading updates succeeded" 
 		rm -rf ./environments
 		cp -r ../nodejs_backup/* ./
 
 		echo "Compiling"
-		if [./node_modules/.bin/grunt build]; then
+		if ./node_modules/.bin/grunt build; then
 			echo "Compiling succeeded"
 		else 
-			if [./node_modules/.bin/grunt build]; then
+			if ./node_modules/.bin/grunt build; then
 				echo "Compiling succeeded"
 			else 
 				echo "Compiling failed"
@@ -39,11 +39,11 @@ if [cp -r ./nodejs ./nodejs_backup_$current_time]; then
 		success=false
 	fi
 	
-	if [$success == true]; then
+	if $success == true; then
 		echo "Succeeded, you can now restart the database-editor service as root"
 	else 
 		echo "Failed, reverting backup" 
-		if [cp -rf ../nodejs_backup_$current_time ./]; then
+		if cp -rf ../nodejs_backup_$current_time ./; then
 			echo "Backup restore succeeded"
 		else 
 			echo "Backup restore failed, please try it manually"
