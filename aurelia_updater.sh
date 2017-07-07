@@ -30,7 +30,7 @@ if cp -r ./aurelia ./aurelia_backup_$current_time; then
 		cp -r ../aurelia_backup/* ./
 
 		echo "Compiling"
-		if if ./node_modules/.bin/au build; then; then
+		if ./node_modules/.bin/au build; then
 			echo "Compiling succeeded"
 		else 
 			echo "Compiling failed"
