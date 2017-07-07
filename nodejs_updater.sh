@@ -52,3 +52,9 @@ if cp -r ./nodejs ./nodejs_backup_$current_time; then
 else
 	echo "Backup failed. Aborted"
 fi
+
+echo "Don't forget to update kodi.service to restart always (
+	sudo nano /lib/systemd/system/kodi.service 
+		on-abort -> always
+	sudo systemctl daemon-reload && sudo systemctl restart kodi
+)"
